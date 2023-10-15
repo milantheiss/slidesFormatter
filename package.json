@@ -1,0 +1,12 @@
+{
+  "name": "slidesformatter",
+  "version": "1.0.0",
+  "description": "A simple node.js script to put the slides of a presentation onto another pdf",
+  "main": "main.js",
+  "author": "Milan Theiss",
+  "license": "MIT",
+  "dependencies": {
+    "pdf-lib": "^1.17.1"
+  },
+  "devDependencies": {}
+}
