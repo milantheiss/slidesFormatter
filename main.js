@@ -47,26 +47,34 @@ async function embedSlidesOnBase(basePdfPath, slidesPdfPath) {
 
 // Validate path and add .pdf if not present
 function validatePath(path) {
+    // Add .pdf if not present
+    if (!path.match(/\.pdf$/)) {
+        path = path.concat(".pdf");
+    }
+
     // Check if path exists
     if (!fs.existsSync(path)) {
         console.log(`Error: ${path} does not exist.`);
         process.exit(1);
     }
 
-    // Add .pdf if not present
-    if (!path.match(/\.pdf$/)) {
-        path.concat(".pdf");
-    }
     return path;
 }
 
 // Check if arguments are valid
 if (process.argv[2] !== "-f" && process.argv.length === 5 || process.argv[2] === "-f" && process.argv.length === 6) {
+    // Add .pdf to output path if not present
+    if (!process.argv[process.argv.length - 1].match(/\.pdf$/)) {
+        process.argv[process.argv.length - 1] = process.argv[process.argv.length - 1].concat(".pdf");
+    }
+
     //Throws an error if -f is not set and output path already exists
-    if (process.argv.splice(2, 1)[0] !== "-f" && fs.existsSync(process.argv[4])) {
+    if (process.argv[2] !== "-f" && fs.existsSync(process.argv[4])) {
         console.log(`Error: ${process.argv[4]} already exist. Use -f as last argument to overwrite.`);
         process.exit(1);
-    } 
+    } else {
+        process.argv.splice(2, 1);
+    }
 
     // Throws an error if directory of output path doesn't exists
     if (!fs.existsSync(p.dirname(process.argv[4]))) {
