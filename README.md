@@ -8,4 +8,4 @@ See [sample.pdf](https://github.com/milantheiss/slidesFormatter/blob/ba92d490cfa
 - Clone this repo to your desired location ```git clone https://github.com/milantheiss/slidesformatter```  
 - Install all dependencies
 ```npm install```  
-- Execute the script with ```node main.js [-f if overwrite] <base-pdf-path> <slides-pdf-path> <output-pdf-path>```
+- Execute the script with ```node main.js [-f to overwrite] <base-pdf-path> <slides-pdf-path> <output-pdf-path>```
