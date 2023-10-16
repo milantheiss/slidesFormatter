@@ -72,9 +72,11 @@ if (process.argv[2] !== "-f" && process.argv.length === 5 || process.argv[2] ===
     if (process.argv[2] !== "-f" && fs.existsSync(process.argv[4])) {
         console.log(`Error: ${process.argv[4]} already exist. Use -f as last argument to overwrite.`);
         process.exit(1);
-    } else {
+    } else if (process.argv[2] === "-f") {
         process.argv.splice(2, 1);
     }
+
+    console.log(process.argv)
 
     // Throws an error if directory of output path doesn't exists
     if (!fs.existsSync(p.dirname(process.argv[4]))) {
