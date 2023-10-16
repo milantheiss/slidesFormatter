@@ -69,7 +69,8 @@ if (process.argv[2] !== "-f" && process.argv.length === 5 || process.argv[2] ===
     }
 
     // Normalize paths so that they work on windows
-    for(let i = 3; i < process.argv.length; i++) {
+    for(let i = process.argv.length - 3; i < process.argv.length; i++) {
+        process.argv[i] = process.argv[i].replace(/\\/g, "/");
         process.argv[i] = p.normalize(process.argv[i]);
     }
 
