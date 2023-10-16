@@ -68,6 +68,11 @@ if (process.argv[2] !== "-f" && process.argv.length === 5 || process.argv[2] ===
         process.argv[process.argv.length - 1] = process.argv[process.argv.length - 1].concat(".pdf");
     }
 
+    // Normalize paths so that they work on windows
+    for(let i = 3; i < process.argv.length; i++) {
+        process.argv[i] = p.normalize(process.argv[i]);
+    }
+
     //Throws an error if -f is not set and output path already exists
     if (process.argv[2] !== "-f" && fs.existsSync(process.argv[4])) {
         console.log(`Error: ${process.argv[4]} already exist. Use -f as last argument to overwrite.`);
@@ -76,7 +81,6 @@ if (process.argv[2] !== "-f" && process.argv.length === 5 || process.argv[2] ===
         process.argv.splice(2, 1);
     }
 
-    console.log(process.argv)
 
     // Throws an error if directory of output path doesn't exists
     if (!fs.existsSync(p.dirname(process.argv[4]))) {
